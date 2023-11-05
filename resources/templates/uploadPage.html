@@ -1,0 +1,254 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--=============== FAVICON ===============-->
+	<link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+	<!--=============== REMIXICONS ===============-->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+	<!--=============== CSS ===============-->
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<title>PresentPal| Make Speech Easier</title>
+</head>
+
+<body>
+	<!--==================== HEADER ====================-->
+	<header class="header" id="header">
+		<nav class="nav container">
+			<a href="/authorizedPage" class="nav__logo"> PresentPal </a>
+
+			<div class="nav__menu" id="nav-menu">
+				<ul class="nav__list">
+					<li class="nav__item"><a href="/authorizedPage" class="nav__link">Home</a></li>
+
+					<li class="nav__item"><a href="#upload" class="nav__link">Upload</a>
+					</li>
+
+					<li class="nav__item"><a href="#document" class="nav__link">Document</a>
+					</li>
+
+					<li class="nav__item" th:text="'Welcome '+ ${username}">
+					</li>
+
+					<li class="nav__item"><a href="/logout" class="nav__link">Logout</a>
+					</li>
+				</ul>
+
+				<!-- Close button -->
+				<div class="nav__close" id="nav-close">
+					<i class="ri-close-line"></i>
+				</div>
+			</div>
+
+			<!-- Toggle button -->
+			<div class="nav__toggle" id="nav-toggle">
+				<i class="ri-menu-line"></i>
+			</div>
+		</nav>
+	</header>
+
+	<!--==================== MAIN ====================-->
+	<main class="upload_main">
+      
+		<!--==================== Upload ====================-->
+		<section class="upload section" id="upload">
+			<div class="upload__container container grid">
+				<div class="upload__data">
+					<h2 class="section__title">
+						Upload Slides <br> to Get Your Speech
+					</h2>
+
+					<div class="drag__area">
+						<div class="icon">
+							<i class="ri-cloud-line"></i>
+						</div>
+						<header>Drag & Drop to Upload File</header>
+						<span>OR</span>
+						<form method="POST" enctype="multipart/form-data" action="/" accept=".ppt,.pptx">
+							<input type="file" name="file" class="file__inputleft">
+							<input type="submit" value="Upload" class="file__inputright">
+						</form>
+						<!--
+						<section class="progress-area">
+							<li class="row">
+								<div class="content">
+								
+									<div class="details"><i class="ri-file-line"></i>
+										<span class="name">ppt_01.pptx--Uploading</span>
+										<span class="percent">50%</span>
+									</div>
+									<div class="progress-bar">
+										<div class="progress"></div>
+									</div>
+								</div>
+							</li>
+						</section>
+						
+						<section class="uploaded-area">
+							<li class="row">
+								<div class="content">
+								
+									<div class="details"><i class="ri-file-line"></i>
+										<span class="name">ppt_01.pptx--Uploading</span>
+										<span class="size">70 KB</span>
+									</div>
+								</div>
+								<i class="ri-check-fill"></i>
+							</li>
+						</section>
+						-->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--==================== DOCUMENT ====================-->
+
+		<section class="document section" id="document">
+			<div class="wrapper">
+				<header>Upload Result</header>
+				<section class="progress-area"></section>
+				<section class="uploaded-area"></section>
+			</div>
+			<div th:if="${message}">
+				<h2 th:text="${message}" />
+			</div>
+
+			<div th:if="${imageUrls}">
+				<div class="imgstyle">
+					<div class="imgs" style="width:7000000px;">
+						<div th:each="imageUrl : ${imageUrls}" style="width:7000000px;">
+							<img th:src="${imageUrl}" alt="Slide Image" width="700" class="imgs">
+						</div>
+					</div>
+					<script th:inline="javascript">
+						var size = /*[[${size}]]*/;
+					</script>
+					<div th:if="${size}">
+						<div th:onclick="pre()" style="float:left;cursor:pointer">Last page</div>
+						<div th:data-name="${size}" th:onclick="nex(size)" style="float:right;cursor:pointer">Next page
+						</div>
+					</div>
+				</div>
+			</div>
+			<script th:inline="javascript" src="js/image.js"></script>
+			<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+			
+                        <div th:if="${contents}">
+			  <div class="containtext">	
+			  <div class="filetextarea">
+				  <div th:each="content : ${contents}" >
+                                       <p id="fileContent" class="fileContent" th:text="${content}"></p>
+                                  </div>  
+                          </div>
+                          </div>
+			</div>
+			
+			<div>
+				<ul>
+					<li th:each="file : ${files}"><a th:href="${file}" th:text="${file}" /></li>
+				</ul>
+			</div>
+
+
+		</section>
+	</main>
+
+	<!--==================== FOOTER ====================-->
+	<footer class="footer">
+		<div class="footer__container container grid">
+			<div class="footer__content grid">
+				<div>
+					<a href="#" class="footer__logo">PresentPal</a>
+
+					<p class="footer__description">
+						This project is being <br> continuously updated.
+					</p>
+				</div>
+
+				<div class="footer__data grid">
+					<div>
+						<h3 class="footer__title">About</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">About Us</a></li>
+
+							<li><a href="#" class="footer__link">Features</a></li>
+
+							<li><a href="#" class="footer__link">News & Blog</a></li>
+						</tl>
+					</div>
+
+					<div>
+						<h3 class="footer__title">Company</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">FAQs</a></li>
+
+							<li><a href="#" class="footer__link">History</a></li>
+
+							<li><a href="#" class="footer__link">Testimonials</a></li>
+						</tl>
+					</div>
+
+					<div>
+						<h3 class="footer__title">Contact</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">Call Center</a></li>
+
+							<li><a href="#" class="footer__link">Suppor Center</a></li>
+
+							<li><a href="#" class="footer__link">Contact Us</a></li>
+						</tl>
+					</div>
+
+					<div>
+						<h3 class="footer__title">Support</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">Privacy Policy</a></li>
+
+							<li><a href="#" class="footer__link">Terms & Services</a></li>
+
+							<li><a href="#" class="footer__link">Payments</a></li>
+						</tl>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer__group">
+				<div class="footer__social">
+					<a href="https://www.facebook.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-facebook-line"></i>
+					</a> <a href="https://www.instagram.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-instagram-line"></i>
+					</a> <a href="https://twitter.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-twitter-line"></i>
+					</a> <a href="https://www.youtube.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-youtube-line"></i>
+					</a>
+				</div>
+
+				<span class="footer__copy"> &#169; Copyright PittAIGC. All
+					right reserved </span>
+			</div>
+		</div>
+	</footer>
+
+	<!--========== SCROLL UP ==========-->
+	<a href="#" class="scrollup" id="scroll-up"> <i class="ri-arrow-up-line"></i>
+	</a>
+
+	<!--=============== SCROLLREVEAL ===============-->
+	<script src="/js/scrollreveal.min.js"></script>
+
+	<!--=============== MAIN JS ===============-->
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

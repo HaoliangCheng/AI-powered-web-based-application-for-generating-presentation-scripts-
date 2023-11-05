@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--=============== FAVICON ===============-->
+	<link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+	<!--=============== REMIXICONS ===============-->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+	<!--=============== CSS ===============-->
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<title>PresentPal| Make Speech Easier</title>
+</head>
+
+<body>
+	<!--==================== HEADER ====================-->
+	<header class="header" id="header">
+		<nav class="nav container">
+			<a href="/" class="nav__logo"> PresentPal </a>
+
+			<div class="nav__menu" id="nav-menu">
+				<ul class="nav__list">
+					<li class="nav__item"><a href="/" class="nav__link">Home</a></li>
+
+					<li class="nav__item"><a href="#upload" class="nav__link">Upload</a>
+					</li>
+
+					<li class="nav__item"><a href="#document" class="nav__link">Document</a>
+					</li>
+
+					<li class="nav__item"><a href="#explore" class="nav__link">Explore</a>
+					</li>
+
+					<li class="nav__item"><button class="loginpopup">Login</button>
+					</li>
+				</ul>
+
+				<!-- Close button -->
+				<div class="nav__close" id="nav-close">
+					<i class="ri-close-line"></i>
+				</div>
+			</div>
+
+			<!-- Toggle button -->
+			<div class="nav__toggle" id="nav-toggle">
+				<i class="ri-menu-line"></i>
+			</div>
+		</nav>
+	</header>
+
+
+	<!--==================== Login ====================-->
+	<section class="login_section" id="login">
+		<div class="login_wrapper">
+			<span class="icon-close"><i class="ri-close-line"></i></span>
+			<div class="form-box register">
+				<h2>Registration</h2>
+				<form action="#" th:action="@{/register}" method="post">
+					<div class="input-box">
+						<span class="icon"><i class="ri-mail-fill"></i></span>
+						<input type="email" required name="username">
+						<label>Email</label>
+					</div>
+					<div class="input-box">
+						<span class="icon"><i class="ri-lock-fill"></i></span>
+						<input type="password" required name="password">
+						<label>Password</label>
+					</div>
+					<div class="remember-forget">
+						<label><input type="checkbox">
+							I agree to the terms & conditions</label>
+					</div>
+					<button type="submit" class="signbtn">Register</button>
+					<div class="login-register">
+						<p>Already have an account? <a href="/login" class="login-link">Login</a></p>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</section>
+	
+	<div th:if="${message}">
+		<h2 th:text="${message}" />
+	</div>
+	<div th:if="${registrationSymbol}">
+		<div class="success hide"> 
+			<span class="checkicon"><i class="ri-check-fill"></i></span>
+			<span class="alter alter-success">Registration was successful! Please Check your email for verification.</span>
+			<span class="close_btn">
+				<span class="closeicon"><i class="ri-close-line"></i></span>
+			</span>
+		</div>
+	</div>
+
+	<script>
+		$('signbtn').click(function(){
+			$('.success').removeClass("hide");
+			$('.success').addClass("show");
+			$('.success').addClass("showAlert");
+			setTimeout(function(){
+				$('.success').addClass("hide");
+				$('.success').removeClass("show");
+			},5000);
+		});		
+		$('close_btn').click(function(){
+			$('.success').addClass("hide");
+			$('.success').removeClass("show");
+		});			
+	</script>
+	
+	<!--==================== FOOTER ====================-->
+	<footer class="footer">
+		<div class="footer__container container grid">
+			<div class="footer__content grid">
+				<div>
+					<a href="#" class="footer__logo">PresentPal</a>
+
+					<p class="footer__description">
+						This project is being <br> continuously updated.
+					</p>
+				</div>
+
+				<div class="footer__data grid">
+					<div>
+						<h3 class="footer__title">About</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">About Us</a></li>
+
+							<li><a href="#" class="footer__link">Features</a></li>
+
+							<li><a href="#" class="footer__link">News & Blog</a></li>
+						</tl>
+					</div>
+
+					<div>
+						<h3 class="footer__title">Company</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">FAQs</a></li>
+
+							<li><a href="#" class="footer__link">History</a></li>
+
+							<li><a href="#" class="footer__link">Testimonials</a></li>
+						</tl>
+					</div>
+
+					<div>
+						<h3 class="footer__title">Contact</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">Call Center</a></li>
+
+							<li><a href="#" class="footer__link">Suppor Center</a></li>
+
+							<li><a href="#" class="footer__link">Contact Us</a></li>
+						</tl>
+					</div>
+
+					<div>
+						<h3 class="footer__title">Support</h3>
+
+						<tl class="footer__links">
+							<li><a href="#" class="footer__link">Privacy Policy</a></li>
+
+							<li><a href="#" class="footer__link">Terms & Services</a></li>
+
+							<li><a href="#" class="footer__link">Payments</a></li>
+						</tl>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer__group">
+				<div class="footer__social">
+					<a href="https://www.facebook.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-facebook-line"></i>
+					</a> <a href="https://www.instagram.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-instagram-line"></i>
+					</a> <a href="https://twitter.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-twitter-line"></i>
+					</a> <a href="https://www.youtube.com/" target="_blank" class="footer__social-link"> <i
+							class="ri-youtube-line"></i>
+					</a>
+				</div>
+
+				<span class="footer__copy"> &#169; Copyright PittAIGC. All
+					right reserved </span>
+			</div>
+		</div>
+	</footer>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+	<!--========== SCROLL UP ==========-->
+	<a href="#" class="scrollup" id="scroll-up"> <i class="ri-arrow-up-line"></i>
+	</a>
+
+	<!--=============== SCROLLREVEAL ===============-->
+	<script src="/js/scrollreveal.min.js"></script>
+
+	<!--=============== MAIN JS ===============-->
+	<script src="/js/main.js"></script>
+</body>
+
+</html>
