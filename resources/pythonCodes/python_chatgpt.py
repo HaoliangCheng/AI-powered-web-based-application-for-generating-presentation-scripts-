@@ -58,7 +58,7 @@ def run_chatgpt_w_text(input, output, prompt=False, completion=False):
 def run_conversation_completion(content, prompt, outfile):
     # TODO: separate this info
     api_endpoint = "https://api.openai.com/v1/chat/completions"
-    api_key = "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"
+    api_key = ""
 
     request_headers = {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ def run_conversation_completion(content, prompt, outfile):
         print(f"Request failed with status code: {str(response.status_code)}")
 
 def run_converstion_chat_completion(content, prompt, outfile):
-    openai.api_key = "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"
+    openai.api_key = ""
 
     messages = [{"role": "user", "content": prompt + content}]
 
