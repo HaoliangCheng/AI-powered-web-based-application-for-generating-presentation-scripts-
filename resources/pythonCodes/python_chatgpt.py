@@ -57,7 +57,7 @@ def run_chatgpt_w_text(input, output, prompt=False, completion=False):
 
 def run_conversation_completion(content, prompt, outfile):
     # TODO: separate this info
-    api_endpoint = "https://api.openai.com/v1/chat/completions"
+    api_endpoint = ""
     api_key = ""
 
     request_headers = {
@@ -88,7 +88,7 @@ def run_converstion_chat_completion(content, prompt, outfile):
     messages = [{"role": "user", "content": prompt + content}]
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-0613",
+        model="",
         messages=messages,
     )
 
